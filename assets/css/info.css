@@ -1,13 +1,12 @@
-.header {
-  width: 100%;
-  position: absolute;
+.body {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
+  gap: 2rem;
 
-.body {
-  padding: 1rem;
+  .body__bio {
+  }
+
+  img {
+    height: 100%;
+  }
 }
