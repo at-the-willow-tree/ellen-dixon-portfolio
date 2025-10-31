@@ -4,9 +4,12 @@
   gap: 2rem;
 
   .body__bio {
+    flex: 1;
   }
 
-  img {
-    height: 100%;
+  .body__image {
+    flex: 1;
+    height: 10%;
+    width: auto;
   }
 }

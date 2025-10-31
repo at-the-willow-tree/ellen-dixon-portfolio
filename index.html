@@ -14,12 +14,50 @@
   </head>
   <body>
     <header class="header">
-      Ellen Dixon
-      <a>Info</a>
+      <p><a href="#">Ellen Dixon</a></p>
+      <a href="info.html">Info</a>
 
     </header>
     <main class="body">
-    </main>
+      <nav class="body__nav">
+        <ul class="body__nav__list">
+          <li><a href="#portraits" id="portraits">Portraits</a></li>
+          <li><a href="#diary" id="diary">Diary</a></li>
+          <li><a href="#artists" id="artists">Artists</a></li>
+          <li><a href="#places" id="places">Places</a></li>
+          <li><a href="#products" id="product">Products</a></li>
+          <li><a href="#food" id="food">Food</a></li>
+          <li><a href="#concert" id="concert">Concert</a></li>
+          <li><a href="#weddings" id="weddings">Weddings</a></li>
+          <li>Projects
+            <ul class="body__nav__list__sublist">
+              <li><a href="#queer-archive" id="queer-archive">Queer archive</a></li>
+              <li><a href="#hoppings" id="hoppings">Hoppings</a></li>
+            </ul>
+          </li>
+        </ul>
 
+      </nav>
+      <section class="body__center">
+        <div class="body__center__gallery">
+          <div class="body__center__gallery__images">
+
+            <img alt="" id="visible-picture" src="assets/images/photos/home/01.jpg" />
+            <img class="hidden-picture" alt="" src="assets/images/photos/home/02.jpg" />
+            <img class="hidden-picture" alt="" src="assets/images/photos/home/03.jpg" />
+          </div>
+          <div class="body__center__gallery__controls">
+            <button id="previous" type="button" class="body__center__gallery__controls__button" aria-label="Previous image">
+              <img src="assets/icons/arrow-left.svg" alt="Previous" aria-hidden="true">
+            </button> 
+            <p class="body__center__gallery__controls__text"><span id="current-photo">1</span> / <span id="total-photos">15</span></p>
+            <button id="next" type="button" class="body__center__gallery__controls__button" aria-label="Next image">
+              <img src="assets/icons/arrow-right.svg" alt="Next" aria-hidden="true">
+            </button> 
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="assets/js/home.js"></script> 
   </body>
 </html>
