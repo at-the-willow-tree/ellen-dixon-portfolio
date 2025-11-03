@@ -1,6 +1,6 @@
 const totals = {
   home: 16,
-  artists: 21,
+  artists: 15,
   portraits: 23,
   concerts: 20,
   diary: 32,
@@ -8,11 +8,13 @@ const totals = {
   hoppings: 15,
   places: 31,
   products: 12,
-  queer_archive: 37,
+  queer_archive: 36,
   weddings: 26, 
 }
 
-let currentPicture = 1;
+let prevIndex = 0;
+let nextIndex = 0;
+let currentIndex = 1;
 let currentSection = 'home';
 let sectionTotal = totals.home;
 
@@ -29,86 +31,81 @@ function padNumber(number) {
   return String(number).padStart(2, '0')
 }
 
-window.addEventListener('hashchange', function() {
-  let hash = window.location.hash.substring(1);
+function onHashChange() {
+  const hash = window.location.hash.substring(1).replace('-', '_');
   if(!Object.keys(totals).includes(hash)) {
     window.location.hash = '#';
     currentSection = 'home';
   } else {
-    currentSection = hash.replace('-', '_');
+    currentSection = hash;
   }
+
+  sectionTotal = totals[currentSection];
   loadInitialImages(currentSection);
 
-})
+}
+
+window.addEventListener('hashchange', onHashChange)
+onHashChange();
 
 
 // set hiddenpictures to prev and next
-if(window.location.hash) {
-  const section = window.location.hash.split('#')[1];
-  loadInitialImages(section);
-} else {
-  loadInitialImages('home');
-}
 
 function loadInitialImages(section) {
-  currentPicture = 1;
+  currentIndex = 1;
+  nextIndex = 2;
+  prevIndex = totals[section];
+
   sectionTotal = totals[section];
 
-
-  current.textContent = padNumber(currentPicture);
-  total.textContent = padNumber(sectionTotal);
+  updatePictures();
 
 }
 
 previousButton.addEventListener('click', function() {
-  let prev;
-  let next;
-  if(currentPicture === 1) {
-    currentPicture = sectionTotal;
-    prev = currentPicture -1;
-    next = 1;
+  if(currentIndex === 1) {
+    currentIndex = sectionTotal;
+    prevIndex = currentIndex -1;
+    nextIndex = 1;
   } else {
-    currentPicture -= 1;
-    if(currentPicture === 1) {
-      prev = sectionTotal;
+    currentIndex -= 1;
+    if(currentIndex === 1) {
+      prevIndex = sectionTotal;
     } else {
-      prev = currentPicture-1;
+      prevIndex = currentIndex-1;
     }
-    next = currentPicture+1;
+    nextIndex = currentIndex+1;
   }
 
-  picture.src = imageRoot + currentSection + '/' + padNumber(currentPicture) + '.jpg';
-  hiddenPictures[0].src = imageRoot +currentSection + '/' + padNumber(prev) + '.jpg';
-  hiddenPictures[1].src = imageRoot +currentSection + '/' + padNumber(next) + '.jpg';
+  updatePictures();
 
-  current.textContent = padNumber(currentPicture);
-  total.textContent = padNumber(sectionTotal);
 })
 
 nextButton.addEventListener('click', function() {
-  currentPicture += 1
-  if (currentPicture > sectionTotal) {
-    currentPicture %= sectionTotal;
+  currentIndex += 1
+  if (currentIndex > sectionTotal) {
+    currentIndex %= sectionTotal;
   }
 
-  let prev;
-  let next;
-  if(currentPicture === 1) {
-    prev = sectionTotal;
-    next = currentPicture+1;
+  if(currentIndex === 1) {
+    prevIndex = sectionTotal;
+    nextIndex = currentIndex+1;
   } else {
-    prev = currentPicture - -1;
-    next = (currentPicture+1) % sectionTotal;
+    prevIndex = currentIndex - -1;
+    nextIndex = (currentIndex+1) % sectionTotal;
   }
 
-  picture.src = imageRoot + currentSection + '/' + padNumber(currentPicture) + '.jpg';
-  hiddenPictures[0].src = imageRoot +currentSection + '/' + padNumber(prev) + '.jpg';
-  hiddenPictures[1].src = imageRoot +currentSection + '/' + padNumber(next) + '.jpg';
-
-  current.textContent = padNumber(currentPicture);
-  total.textContent = padNumber(sectionTotal);
-
-  // move image forwards one
+  updatePictures();
 
 })
+
+function updatePictures() {
+  picture.src = imageRoot + currentSection + '/' + padNumber(currentIndex) + '.jpg';
+  hiddenPictures[0].src = imageRoot +currentSection + '/' + padNumber(prevIndex) + '.jpg';
+  hiddenPictures[1].src = imageRoot +currentSection + '/' + padNumber(nextIndex) + '.jpg';
+
+  current.textContent = padNumber(currentIndex);
+  total.textContent = padNumber(sectionTotal);
+
+}
 

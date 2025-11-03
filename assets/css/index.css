@@ -1,8 +1,13 @@
 .body {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 1rem;
   gap: 2rem;
+
+  @media only screen and (min-width: 640px) {
+    flex-direction: row;
+  }
 
   & .body__nav {
     & .body__nav__list {
@@ -37,22 +42,34 @@
   & .body__center {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
     & .body__center__gallery {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 1rem;
 
       & .body__center__gallery__images {
+        display: flex;
+        justify-content: center;
         & img {
-          max-width: 1200px;
-          max-height: 700px;
+          /* max-width: 60%; */
+          max-width: 75vw;
+          height: auto;
+          max-height: 400px;
+          @media only screen and (min-width: 1024px) {
+            max-height: 700px;
+            max-width: 1100px;
+          }
         }
 
         & .hidden-picture {
           position: absolute;
+          width: 1px;
+          height: 1px;
           visibility: hidden;
           z-index: -1;
           top: 0;
@@ -61,9 +78,10 @@
       }
 
       & .body__center__gallery__controls {
-        position: absolute;
-        top: 2rem;
+        position: fixed;
+        bottom: 2rem;
         left: 50%;
+        transform: translate(-50%, 0);
         display: flex;
         flex-direction: row;
         align-items: center;
