@@ -1,12 +1,12 @@
 const totals = {
-  home: 16,
   artists: 15,
-  portraits: 23,
   concerts: 20,
   diary: 32,
   food: 13,
+  home: 16,
   hoppings: 15,
   places: 31,
+  portraits: 23,
   products: 12,
   queer_archive: 36,
   weddings: 26, 
@@ -48,9 +48,6 @@ function onHashChange() {
 window.addEventListener('hashchange', onHashChange)
 onHashChange();
 
-
-// set hiddenpictures to prev and next
-
 function loadInitialImages(section) {
   currentIndex = 1;
   nextIndex = 2;
@@ -65,20 +62,13 @@ function loadInitialImages(section) {
 previousButton.addEventListener('click', function() {
   if(currentIndex === 1) {
     currentIndex = sectionTotal;
-    prevIndex = currentIndex -1;
-    nextIndex = 1;
   } else {
     currentIndex -= 1;
-    if(currentIndex === 1) {
-      prevIndex = sectionTotal;
-    } else {
-      prevIndex = currentIndex-1;
-    }
-    nextIndex = currentIndex+1;
   }
 
-  updatePictures();
+  wrapIndices();
 
+  updatePictures();
 })
 
 nextButton.addEventListener('click', function() {
@@ -87,17 +77,24 @@ nextButton.addEventListener('click', function() {
     currentIndex %= sectionTotal;
   }
 
+  wrapIndices();
+
+  updatePictures();
+})
+
+function wrapIndices() {
   if(currentIndex === 1) {
     prevIndex = sectionTotal;
     nextIndex = currentIndex+1;
-  } else {
-    prevIndex = currentIndex - -1;
+  } else if (currentIndex === sectionTotal) {
+    prevIndex = currentIndex -1;
     nextIndex = (currentIndex+1) % sectionTotal;
+  } else {
+    prevIndex = currentIndex -1;
+    nextIndex = currentIndex+1;
   }
 
-  updatePictures();
-
-})
+}
 
 function updatePictures() {
   picture.src = imageRoot + currentSection + '/' + padNumber(currentIndex) + '.jpg';
