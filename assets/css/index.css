@@ -46,12 +46,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       gap: 1rem;
       position: relative;
+      min-height: 400px;
 
       & .body__center__gallery__images {
-        min-height: 400px;
         display: flex;
         justify-content: center;
         & img {
@@ -95,7 +94,7 @@
           justify-content: center;
 
           & img {
-            height: 16px;
+            height: 1rem;
           }
         }
 
@@ -117,6 +116,7 @@
   .body {
     & .body__center {
       & .body__center__gallery {
+        justify-content: unset;
         & .body__center__gallery__images {
           & img {
             max-height: 700px;
