@@ -1,12 +1,8 @@
 .body {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 1rem 5rem 1rem;
   gap: 2rem;
-
-  @media only screen and (min-width: 640px) {
-    flex-direction: row;
-  }
 
   & .body__nav {
     & .body__nav__list {
@@ -49,20 +45,19 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 1rem;
       position: relative;
 
       & .body__center__gallery__images {
+        min-height: 400px;
         display: flex;
         justify-content: center;
         & img {
           max-width: 75vw;
           height: auto;
           max-height: 400px;
-          @media only screen and (min-width: 1024px) {
-            max-height: 700px;
-            max-width: 1100px;
-          }
         }
 
         & .hidden-picture {
@@ -77,8 +72,8 @@
       }
 
       & .body__center__gallery__controls {
-        position: fixed;
-        bottom: 2rem;
+        position: absolute;
+        bottom: -4rem;
         left: 50%;
         transform: translate(-50%, 0);
         display: flex;
@@ -101,6 +96,31 @@
 
           & img {
             height: 16px;
+          }
+        }
+
+        & .body__center__gallery__controls__text {
+          text-wrap: nowrap;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .body {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .body {
+    & .body__center {
+      & .body__center__gallery {
+        & .body__center__gallery__images {
+          & img {
+            max-height: 700px;
+            max-width: 1100px;
           }
         }
       }
