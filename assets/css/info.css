@@ -39,8 +39,10 @@ body {
     gap: 1rem;
     .body__contact__list {
       display: flex;
+      flex-wrap: wrap;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       gap: 1rem;
     }
   }
