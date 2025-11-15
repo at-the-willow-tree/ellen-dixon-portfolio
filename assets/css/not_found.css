@@ -1,0 +1,16 @@
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 4rem;
+  margin: auto;
+  text-align: center;
+}
