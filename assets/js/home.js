@@ -6,9 +6,9 @@ const totals = {
   home: 16,
   hoppings: 15,
   places: 31,
-  portraits: 23,
+  portraits: 22,
   products: 12,
-  queer_archive: 36,
+  queer_archive: 34,
   weddings: 26, 
 }
 
