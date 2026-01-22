@@ -1,14 +1,14 @@
 const totals = {
-  artists: 15,
-  concerts: 20,
-  diary: 32,
+  artists: 17,
+  concerts: 22,
+  diary: 34,
   food: 13,
   home: 16,
   hoppings: 15,
   places: 31,
-  portraits: 22,
+  portraits: 25,
   products: 12,
-  queer_archive: 34,
+  queer_archive: 38,
   weddings: 26,
 };
 
